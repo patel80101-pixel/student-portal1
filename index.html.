@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Portal</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f7;
+            text-align: center;
+            padding: 50px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+        h1 {
+            color: #174ea6;
+        }
+        button {
+            background: #174ea6;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Student Portal</h1>
+        <h2>Welcome Students</h2>
+        <p>Student Name: Rahul Patel</p>
+        <p>Course: Computer Science</p>
+        <p>Attendance: 90%</p>
+        <button>View Results</button>
+        <p>Built using GitHub Actions and Docker</p>
+    </div>
+</body>
+</html>
