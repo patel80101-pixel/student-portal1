@@ -1,0 +1,46 @@
+
+name: Student Portal Docker Build
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Check Docker Version
+        run: docker --version
+
+      - name: Build Docker Image
+        run: docker build -t student-portal:latest .
+
+      - name: Verify Docker Image
+        run: docker images
+
+      - name: Run Student Portal Container
+        run: |
+          docker run -d -p 8080:80 \
+            --name student-portal student-portal:latest
+
+      - name: Test Student Portal
+        run: |
+          curl --fail --retry 5 --retry-connrefused \
+            http://localhost:8080/ -o response.html
+          grep "Student Portal" response.html
+
+      - name: Stop and Remove Container
+        if: always()
+        run: docker rm -f student-portal || true
